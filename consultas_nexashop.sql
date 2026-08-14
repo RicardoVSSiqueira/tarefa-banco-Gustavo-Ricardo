@@ -55,3 +55,52 @@ from pedidos;
 SELECT distinct canal_venda
 from pedidos;
 
+/* Bloco 3 — Indicadores agregados */
+
+/* TAREFA 3.1 */
+
+SELECT 
+    COUNT(*) AS quantidade_pedidos,
+    ROUND(AVG(valor_total), 2) AS ticket_medio,
+    MIN(valor_total) AS menor_valor,
+    MAX(valor_total) AS maior_valor
+FROM pedidos
+WHERE status = 'aprovado';
+
+
+/* TAREFA 3.2 */
+
+SELECT forma_pagamento, SUM(valor_total) as faturamento_total
+from pedidos
+where status = 'aprovado'
+group by forma_pagamento
+order by faturamento_total desc;
+
+/* TAREFA 3.3 */
+
+SELECT estado, count(*) as quantidade_por_estado
+from clientes
+group by estado
+order by quantidade_por_estado desc;
+
+/* TAREFA 3.4 */
+
+SELECT estado, count(*) estados_relevantes
+from clientes
+group by estado
+having count(*) > 200
+order by estados_relevantes;
+
+/* TAREFA 3.5 */
+
+SELECT segmento, AVG(TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE())) AS idade_media
+FROM clientes
+GROUP BY segmento;
+
+/* TAREFA 3.6 */
+
+SELECT categoria, sum(preco*estoque) as calculo_total
+from produtos
+WHERE ativo = 1
+GROUP BY categoria
+order by calculo_total desc;
