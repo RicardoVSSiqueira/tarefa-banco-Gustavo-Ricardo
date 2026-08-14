@@ -104,3 +104,16 @@ from produtos
 WHERE ativo = 1
 GROUP BY categoria
 order by calculo_total desc;
+
+/* Bloco 4 — Classificação com CASE e regras de negócio */
+
+/* TAREFA 4.1 */
+
+SELECT nota, 
+	   case
+		   when nota = 5 then 'Excelente'
+           when nota = 4 then 'Boa'
+           when nota = 3 then 'Regular'
+           WHEN nota = 1 OR nota = 2 THEN 'Insatisfatória'
+end as classificação
+from avaliacoes;
