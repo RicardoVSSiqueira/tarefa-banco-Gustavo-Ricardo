@@ -11,6 +11,7 @@ UNION ALL
 SELECT
 'avaliacoes' AS tabela, COUNT(*) AS total FROM avaliacoes;
 
+/*
 -- TAREFA 2.1
 
 SELECT
@@ -27,7 +28,6 @@ ORDER BY
 	estado,
     nome;
 
-    
 -- TAREFA 2.2
     
 SELECT 
@@ -88,3 +88,4 @@ FROM
 	pedidos
 WHERE
 	cupom_desconto IS NOT NULL;
+*/
