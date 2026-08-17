@@ -117,3 +117,41 @@ SELECT nota,
            WHEN nota = 1 OR nota = 2 THEN 'Insatisfatória'
 end as classificação
 from avaliacoes;
+
+
+/* TAREFA 4.2 */
+
+SELECT  
+	   case
+		   when nota = 5 then 'Excelente'
+           when nota = 4 then 'Boa'
+           when nota = 3 then 'Regular'
+           WHEN nota = 1 OR nota = 2 THEN 'Insatisfatória'
+end as classificação,
+COUNT(*) AS quantidade
+FROM avaliacoes
+GROUP BY classificação
+ORDER BY quantidade DESC;
+
+/* TAREFA 4.3 */
+
+SELECT
+    AVG(CASE WHEN status = 'Aprovado' THEN 1 ELSE 0 END) * 100 AS taxa_aprovacao
+FROM pedidos;
+
+/* TAREFA 4.4 */
+
+SELECT
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, data_cadastro, CURDATE()) < 1 THEN 'Novo'
+        WHEN TIMESTAMPDIFF(YEAR, data_cadastro, CURDATE()) BETWEEN 1 AND 3 THEN 'Fiel'
+        ELSE 'Veterano'
+    END AS perfil,
+    COUNT(*) AS quantidade_clientes
+FROM clientes
+GROUP BY
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, data_cadastro, CURDATE()) < 1 THEN 'Novo'
+        WHEN TIMESTAMPDIFF(YEAR, data_cadastro, CURDATE()) BETWEEN 1 AND 3 THEN 'Fiel'
+        ELSE 'Veterano'
+    END;
